@@ -8,16 +8,16 @@
 
 import UIKit
 
-class detailViewController: UIViewController, UITextFieldDelegate, //UIImagePickerControllerDelegate,
+class detailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var contentTextView: UITextView!
-    //@IBOutlet var haikeiImageView: UIImageView!
+    @IBOutlet var haikeiImageView: UIImageView!
     
     var saveData: UserDefaults = UserDefaults.standard
     var chiki: String!
-   //var imagePickerController: UIImagePickerController = UIImagePickerController()
+   var imagePickerController: UIImagePickerController = UIImagePickerController()
     
     
     
@@ -29,69 +29,48 @@ UINavigationControllerDelegate {
        
         titleTextField.text = saveData.object(forKey: "\(chiki ??  "")title") as? String
         contentTextView.text = saveData.object(forKey: " \(chiki ?? "")content") as? String
-       //haikeiImageView.image = UIImage(data: saveData.object(forKey: "saveImage") as! Data)
+       haikeiImageView.image = UIImage(data: saveData.object(forKey: "saveImage") as! Data)
           
         titleTextField.delegate = self
-       // imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-       // imagePickerController.allowsEditing = true
-       // self.present(imagePickerController, animated: true, completion: nil)
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePickerController.allowsEditing = true
+       self.present(imagePickerController, animated: true, completion: nil)
         
-       // imagePickerController.delegate = self
+        imagePickerController.delegate = self
        }
     
     
     
     
-     //@ IBAction func saveMemo(){
-        //saveData.set(titleTextField.text, forKey: " \(chiki ??  "")title")
-        //saveData.set(contentTextView.text,forKey: " \(chiki ??  "")content")
-       // let alert: UIAlertController = UIAlertController(title: "保存", message: "本文を入れます", preferredStyle: .alert)
-       // alert.addAction(
-           // UIAlertAction(
-                //title: "OK",
-                //style: .default,
-                //handler: { action in
-                    //self.navigationController?.popViewController(animated: true)
+     @ IBAction func saveMemo(){
+        saveData.set(titleTextField.text, forKey: " \(chiki ??  "")title")
+        saveData.set(contentTextView.text,forKey: " \(chiki ??  "")content")
+        let alert: UIAlertController = UIAlertController(title: "保存", message: "本文を入れます", preferredStyle: .alert)
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: { action in
+                    self.navigationController?.popViewController(animated: true)
                    
-                    //self.saveData.set(self.haikeiImageView.image!.pngData() as Data? , forKey: "saveImage")
-            //}
+                    self.saveData.set(self.haikeiImageView.image!.pngData() as Data? , forKey: "saveImage")
+            }
                 
-            //)
-       // )//savedataのalart
-        //present(alert, animated: true,completion: nil)
-        
-        
-        //func textFieldShouldReturn(_ textField: UITextField)-> Bool{
-           // textField.resignFirstResponder()
-            //return true
-            
-            
-        //}
-        
-    //}
-    
-    @IBAction func saveMemo(){
-    saveData.set(titleTextField.text, forKey: " \(chiki ??  "")title")
-            saveData.set(contentTextView.text,forKey: " \(chiki ??  "")content")
-            let alert: UIAlertController = UIAlertController(title: "保存", message: "本文を入れます", preferredStyle: .alert)
-            alert.addAction(
-                UIAlertAction(
-                             title: "OK",
-                              style: .default,
-                              handler: { action in
-                                self.navigationController?.popViewController(animated: true)
-                }
             )
         )//savedataのalart
-            present(alert, animated: true,completion: nil)
+        present(alert, animated: true,completion: nil)
+        
+        
+        func textFieldShouldReturn(_ textField: UITextField)-> Bool{
+            textField.resignFirstResponder()
+            return true
             
             
-                func textFieldShouldReturn(_ textField: UITextField)-> Bool{
-                    textField.resignFirstResponder()
-                    return true
-
-
+        }
+        
     }
+    
+    
         
         }
 
@@ -102,7 +81,7 @@ UINavigationControllerDelegate {
     
     
     
-}
+
 
 
 
