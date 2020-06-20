@@ -8,8 +8,7 @@
 
 import UIKit
 
-class detailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
+class detailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var contentTextView: UITextView!
@@ -17,7 +16,7 @@ UINavigationControllerDelegate {
     
     var saveData: UserDefaults = UserDefaults.standard
     var chiki: String!
-   var imagePickerController: UIImagePickerController = UIImagePickerController()
+    var imagePickerController: UIImagePickerController = UIImagePickerController()
     
     
     
@@ -25,26 +24,28 @@ UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-       
+   
+        
         titleTextField.text = saveData.object(forKey: "\(chiki ??  "")title") as? String
-        contentTextView.text = saveData.object(forKey: " \(chiki ?? "")content") as? String
-       haikeiImageView.image = UIImage(data: saveData.object(forKey: "saveImage") as! Data)
-          
+        contentTextView.text = saveData.object(forKey: "\(chiki ?? "")content") as? String
+        if saveData.object(forKey: "saveImage") != nil{
+            haikeiImageView.image = UIImage(data: saveData.object(forKey: "\(chiki ?? "")saveImage") as! Data)
+        }
+        
         titleTextField.delegate = self
         imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePickerController.allowsEditing = true
-       self.present(imagePickerController, animated: true, completion: nil)
+        self.present(imagePickerController, animated: true, completion: nil)
         
         imagePickerController.delegate = self
-       }
+    }
     
     
     
     
-     @ IBAction func saveMemo(){
-        saveData.set(titleTextField.text, forKey: " \(chiki ??  "")title")
-        saveData.set(contentTextView.text,forKey: " \(chiki ??  "")content")
+    @ IBAction func saveMemo(){
+        saveData.set(titleTextField.text, forKey: "\(chiki ??  "")title")
+        saveData.set(contentTextView.text,forKey: "\(chiki ??  "")content")
         let alert: UIAlertController = UIAlertController(title: "保存", message: "本文を入れます", preferredStyle: .alert)
         alert.addAction(
             UIAlertAction(
@@ -52,8 +53,8 @@ UINavigationControllerDelegate {
                 style: .default,
                 handler: { action in
                     self.navigationController?.popViewController(animated: true)
-                   
-                    self.saveData.set(self.haikeiImageView.image!.pngData() as Data? , forKey: "saveImage")
+                    
+                    self.saveData.set(self.haikeiImageView.image!.pngData() as Data? , forKey: "\(self.chiki ?? "")saveImage")
             }
                 
             )
@@ -71,16 +72,16 @@ UINavigationControllerDelegate {
     }
     
     
-        
-        }
+    
+}
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
 
 
 

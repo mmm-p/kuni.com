@@ -122,6 +122,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contentTextView" destination="rwD-fg-DSo" id="lFZ-lt-pXQ"/>
+                        <outlet property="haikeiImageView" destination="K3H-4g-pFp" id="oJ9-Rt-0jn"/>
                         <outlet property="titleTextField" destination="NGP-32-kqS" id="Hvo-Zb-d8W"/>
                     </connections>
                 </viewController>
