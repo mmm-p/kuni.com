@@ -17,7 +17,8 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     var saveData: UserDefaults = UserDefaults.standard
     var chiki: String!
     var imagePickerController: UIImagePickerController = UIImagePickerController()
-    
+   
+  
  
     
     
@@ -33,11 +34,19 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         }
         
         titleTextField.delegate = self
+        let imagePickerController: UIImagePickerController = UIImagePickerController()
         imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePickerController.allowsEditing = true
         self.present(imagePickerController, animated: true, completion: nil)
         
         imagePickerController.delegate = self
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let image = info[.originalImage] as? UIImage
+        haikeiImageView.image = image
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -70,6 +79,8 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         }
         
     }
+    
+  
     
     
     

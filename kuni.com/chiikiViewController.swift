@@ -24,7 +24,6 @@ class chiikiViewController: UIViewController, UITableViewDataSource, UITableView
             ["アフリカ","ヨーロッパ","中東","アジア","オセアニア","北米","中南米"]
         
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chiikiNameArray.count
     }
