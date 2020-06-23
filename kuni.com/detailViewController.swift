@@ -18,7 +18,7 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     var chiki: String!
     var imagePickerController: UIImagePickerController = UIImagePickerController()
     
-    print(chiiki)
+ 
     
     
     
