@@ -35,9 +35,9 @@ class chiikiViewController: UIViewController, UITableViewDataSource, UITableView
         cell?.textLabel?.text = chiikiNameArray[indexPath.row]
         return cell!
     }
-    func tableView(_tableView: UITableView,didSelectRowAt indexPath: IndexPath){
+    func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath){
         print(chiikiNameArray[indexPath.row])
-        self.performSegue(withIdentifier: "toDetail", sender: [indexPath.row])//画面遷移のsegueをtodetailに送る
+        self.performSegue(withIdentifier: "toDetail", sender: indexPath.row)//画面遷移のsegueをtodetailに送る
     }
     override func prepare (for segue : UIStoryboardSegue, sender: Any?){
         if segue .identifier == "toDetail"{

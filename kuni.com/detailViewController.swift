@@ -18,7 +18,7 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     var chiki: String!
     var imagePickerController: UIImagePickerController = UIImagePickerController()
     
-    
+    print(chiiki)
     
     
     
@@ -28,7 +28,7 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         
         titleTextField.text = saveData.object(forKey: "\(chiki ??  "")title") as? String
         contentTextView.text = saveData.object(forKey: "\(chiki ?? "")content") as? String
-        if saveData.object(forKey: "saveImage") != nil{
+        if saveData.object(forKey: "\(chiki ?? "")saveImage") != nil{
             haikeiImageView.image = UIImage(data: saveData.object(forKey: "\(chiki ?? "")saveImage") as! Data)
         }
         
