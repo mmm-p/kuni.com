@@ -10,7 +10,7 @@ import UIKit
 
 class detailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
-    @IBOutlet var titleTextField: UITextField!
+    @IBOutlet var titleTextField: UITextField!//宣言
     @IBOutlet var contentTextView: UITextView!
     @IBOutlet var haikeiImageView: UIImageView!
     
@@ -33,6 +33,7 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         if saveData.object(forKey: "\(chiki ?? "")saveImage" ) != nil{
             
              haikeiImageView.image = UIImage(data: saveData.object(forKey: "\(chiki ?? "")saveImage") as! Data)
+            //画像がuserdefaultsになかったら
         
         
    
@@ -41,6 +42,7 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
                    imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
                    imagePickerController.allowsEditing = true
                    self.present(imagePickerController, animated: true, completion: nil)
+            //画像があったら
            
         
             
@@ -56,13 +58,14 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         let image = info[.originalImage] as? UIImage
         haikeiImageView.image = image
         self.dismiss(animated: true, completion: nil)
+        //imagepickercontrollerを出してimageを保存する
     }
     
     
     
     
     @ IBAction func saveMemo(){
-        saveData.set(titleTextField.text, forKey: "\(chiki ??  "")title")
+        saveData.set(titleTextField.text, forKey: "\(chiki ??  "")title")//savedataのtitletext
         saveData.set(contentTextView.text,forKey: "\(chiki ??  "")content")
         let alert: UIAlertController = UIAlertController(title: "保存", message: "本文を入れます", preferredStyle: .alert)
         alert.addAction(
@@ -77,12 +80,13 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
                 
             )
         )//savedataのalart
-        present(alert, animated: true,completion: nil)
+        present(alert, animated: true,completion: nil)// 画面遷移戻す
         
         
         func textFieldShouldReturn(_ textField: UITextField)-> Bool{
             textField.resignFirstResponder()
             return true
+        //戻る
             
             
         }
