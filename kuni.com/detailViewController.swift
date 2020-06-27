@@ -25,24 +25,33 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
+    
+    let imagePickerController: UIImagePickerController = UIImagePickerController()
         
         titleTextField.text = saveData.object(forKey: "\(chiki ??  "")title") as? String
         contentTextView.text = saveData.object(forKey: "\(chiki ?? "")content") as? String
-        if saveData.object(forKey: "\(chiki ?? "")saveImage") != nil{
-            haikeiImageView.image = UIImage(data: saveData.object(forKey: "\(chiki ?? "")saveImage") as! Data)
+        if saveData.object(forKey: "\(chiki ?? "")saveImage" ) != nil{
+            
+             haikeiImageView.image = UIImage(data: saveData.object(forKey: "\(chiki ?? "")saveImage") as! Data)
+        
+        
+   
+        }else{
+                   imagePickerController.delegate = self
+                   imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+                   imagePickerController.allowsEditing = true
+                   self.present(imagePickerController, animated: true, completion: nil)
+           
+        
+            
         }
-        
-        titleTextField.delegate = self
-        let imagePickerController: UIImagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-        imagePickerController.allowsEditing = true
-        self.present(imagePickerController, animated: true, completion: nil)
-        
-        imagePickerController.delegate = self
+         titleTextField.delegate = self
+         
+       
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("AAA")
         
         let image = info[.originalImage] as? UIImage
         haikeiImageView.image = image
