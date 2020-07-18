@@ -15,6 +15,7 @@
 		FA334DA123DAFA0D0066B5A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA334D9F23DAFA0D0066B5A7 /* LaunchScreen.storyboard */; };
 		FA334DA923DB044C0066B5A7 /* chiikiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA334DA823DB044C0066B5A7 /* chiikiViewController.swift */; };
 		FA334DAB23DB04650066B5A7 /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA334DAA23DB04650066B5A7 /* detailViewController.swift */; };
+		FA4FF5F524C2FA3E00119E8E /* 旅行アイコン.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4FF5F424C2FA3D00119E8E /* 旅行アイコン.png */; };
 		FACDA944248BACE5009E62FF /* 79654551_220x220.png in Resources */ = {isa = PBXBuildFile; fileRef = FACDA943248BACE5009E62FF /* 79654551_220x220.png */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		FA334DA223DAFA0D0066B5A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA334DA823DB044C0066B5A7 /* chiikiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chiikiViewController.swift; sourceTree = "<group>"; };
 		FA334DAA23DB04650066B5A7 /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
+		FA4FF5F424C2FA3D00119E8E /* 旅行アイコン.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "旅行アイコン.png"; sourceTree = "<group>"; };
 		FACDA943248BACE5009E62FF /* 79654551_220x220.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 79654551_220x220.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +66,7 @@
 			children = (
 				FA334D9623DAFA0B0066B5A7 /* AppDelegate.swift */,
 				FA334D9823DAFA0B0066B5A7 /* ViewController.swift */,
+				FA4FF5F424C2FA3D00119E8E /* 旅行アイコン.png */,
 				FACDA943248BACE5009E62FF /* 79654551_220x220.png */,
 				FA334D9A23DAFA0B0066B5A7 /* Main.storyboard */,
 				FA30F1AE24190194008B8C97 /* df0c811bf420a91952f407b0568ac390_t.jpeg */,
@@ -136,6 +139,7 @@
 			files = (
 				FACDA944248BACE5009E62FF /* 79654551_220x220.png in Resources */,
 				FA30F1AF24190194008B8C97 /* df0c811bf420a91952f407b0568ac390_t.jpeg in Resources */,
+				FA4FF5F524C2FA3E00119E8E /* 旅行アイコン.png in Resources */,
 				FA334DA123DAFA0D0066B5A7 /* LaunchScreen.storyboard in Resources */,
 				FA334D9E23DAFA0D0066B5A7 /* Assets.xcassets in Resources */,
 				FA334D9C23DAFA0B0066B5A7 /* Main.storyboard in Resources */,

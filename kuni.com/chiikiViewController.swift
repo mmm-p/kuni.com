@@ -24,35 +24,39 @@ class chiikiViewController: UIViewController, UITableViewDataSource, UITableView
             ["アフリカ","ヨーロッパ","中東","アジア","オセアニア","北米","中南米"]//chiikinamearray の中身
         
     }
+    // tableviewのcellの段数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chiikiNameArray.count
-    }// tableviewのデーターの値づけ
+    }
     
+    //tableviewのcellの値を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-        
         cell?.textLabel?.text = chiikiNameArray[indexPath.row]
         return cell!
-    }//cellの設定
+    }
+    // 画面遷移のsegueの値をtodetailに送る
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath){
         print(chiikiNameArray[indexPath.row])
         self.performSegue(withIdentifier: "toDetail", sender: indexPath.row)//画面遷移のsegueをtodetailに送る
-    }// 画面遷移のsegueの値をtodetailに送る
+    }
+    //todetailに送ってdetailviewに値を送る
     override func prepare (for segue : UIStoryboardSegue, sender: Any?){
         if segue .identifier == "toDetail"{
             let VC = segue.destination as! detailViewController
+            
             let index = sender as! Int
             VC.chiki = chiikiNameArray[index]
-           
-    }//todetailに送ってdetailvierに値を送る
+            
+        }
     }
     
     
     
-    }
-    
-   
-    
-    
+}
+
+
+
+
 
 

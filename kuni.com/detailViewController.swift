@@ -25,40 +25,31 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
     let imagePickerController: UIImagePickerController = UIImagePickerController()
         
         titleTextField.text = saveData.object(forKey: "\(chiki ??  "")title") as? String
         contentTextView.text = saveData.object(forKey: "\(chiki ?? "")content") as? String
         if saveData.object(forKey: "\(chiki ?? "")saveImage" ) != nil{
-            
-             haikeiImageView.image = UIImage(data: saveData.object(forKey: "\(chiki ?? "")saveImage") as! Data)
+            haikeiImageView.image = UIImage(data: saveData.object(forKey: "\(chiki ?? "")saveImage") as! Data)
             //画像がuserdefaultsになかったら
         
-        
-   
+        //画像があったら
         }else{
                    imagePickerController.delegate = self
                    imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
                    imagePickerController.allowsEditing = true
                    self.present(imagePickerController, animated: true, completion: nil)
-            //画像があったら
-           
-        
-            
-        }
+            }
          titleTextField.delegate = self
-         
-       
-    }
+         }
     
+    //imagepickercontrollerを出してimageを保存する
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("AAA")
         
         let image = info[.originalImage] as? UIImage
         haikeiImageView.image = image
         self.dismiss(animated: true, completion: nil)
-        //imagepickercontrollerを出してimageを保存する
+        
     }
     
     
@@ -74,14 +65,12 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
                 style: .default,
                 handler: { action in
                     self.navigationController?.popViewController(animated: true)
-                    
                     self.saveData.set(self.haikeiImageView.image!.pngData() as Data? , forKey: "\(self.chiki ?? "")saveImage")
             }
                 
             )
         )//savedataのalart
         present(alert, animated: true,completion: nil)// 画面遷移戻す
-        
         
         func textFieldShouldReturn(_ textField: UITextField)-> Bool{
             textField.resignFirstResponder()
