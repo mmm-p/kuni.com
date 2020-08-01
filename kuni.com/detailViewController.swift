@@ -64,8 +64,10 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
                 title: "OK",
                 style: .default,
                 handler: { action in
+                    
                     self.navigationController?.popViewController(animated: true)
                     self.saveData.set(self.haikeiImageView.image!.pngData() as Data? , forKey: "\(self.chiki ?? "")saveImage")
+                   
             }
                 
             )
