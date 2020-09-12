@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import RealmSwift
 
-class detailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class detailViewController: UIViewController {
+    let realm = try! Realm()
+    var MemoArray: Results<Memo>!
+    
     
     @IBOutlet var titleTextField: UITextField!//宣言
     @IBOutlet var contentTextView: UITextView!
     @IBOutlet var haikeiImageView: UIImageView!
     
-    var saveData: UserDefaults = UserDefaults.standard
+    //var saveData: UserDefaults = UserDefaults.standard
     var chiki: String!
     var imagePickerController: UIImagePickerController = UIImagePickerController()
+    
+    
    
   
  
@@ -25,79 +31,113 @@ class detailViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(chiki)
     let imagePickerController: UIImagePickerController = UIImagePickerController()
-        
-        titleTextField.text = saveData.object(forKey: "\(chiki ??  "")title") as? String
-        contentTextView.text = saveData.object(forKey: "\(chiki ?? "")content") as? String
-        if saveData.object(forKey: "\(chiki ?? "")saveImage" ) != nil{
-            haikeiImageView.image = UIImage(data: saveData.object(forKey: "\(chiki ?? "")saveImage") as! Data)
+        MemoArray = realm.objects(Memo.self)
+        //titleTextField.text = saveData.object(forKey: "\(chiki ??  "")title") as? String
+       //contentTextView.text = saveData.object(forKey: "\(chiki ?? "")content") as? String
+        //if saveData.object(forKey: "\(chiki ?? "")saveImage" ) != nil{
+            //haikeiImageView.image = UIImage(data: saveData.object(forKey: "\(chiki ?? "")saveImage") as! Data)
             //画像がuserdefaultsになかったら
         
         //画像があったら
-        }else{
-                   imagePickerController.delegate = self
-                   imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-                   imagePickerController.allowsEditing = true
-                   self.present(imagePickerController, animated: true, completion: nil)
+        //}else{
+                   //imagePickerController.delegate = self
+                   //imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+                   //imagePickerController.allowsEditing = true
+                   //self.present(imagePickerController, animated: true, completion: nil)
+        print()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
             }
-         titleTextField.delegate = self
-         }
+        // titleTextField.delegate = self
+         
     
     //imagepickercontrollerを出してimageを保存する
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    //func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let image = info[.originalImage] as? UIImage
-        haikeiImageView.image = image
-        self.dismiss(animated: true, completion: nil)
+        //let image = info[.originalImage] as? UIImage
+        //haikeiImageView.image = image
+       // self.dismiss(animated: true, completion: nil)
         
+    //}
+    
+
+@IBAction func saveMemo(){
+    let memo = Memo()
+    memo.title = titleTextField.text!
+    memo.content = contentTextView.text!
+    
+    try! realm.write{
+        realm.add(memo)
     }
+    print(MemoArray)
+
+    let alert: UIAlertController = UIAlertController(title: "保存", message: "本文を入れます", preferredStyle: .alert)
+     alert.addAction(
+           UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: { action in
+            print("OKボタンが押されました！")
+               
+    }
+    )
+    )
+    present(alert, animated: true,completion: nil)
+    func textFieldShouldReturn(_ textField: UITextField)-> Bool{
+    textField.resignFirstResponder()
+        return true
+    
+    }
+   
     
     
     
-    
-    @ IBAction func saveMemo(){
-        saveData.set(titleTextField.text, forKey: "\(chiki ??  "")title")//savedataのtitletext
-        saveData.set(contentTextView.text,forKey: "\(chiki ??  "")content")
-        let alert: UIAlertController = UIAlertController(title: "保存", message: "本文を入れます", preferredStyle: .alert)
-        alert.addAction(
-            UIAlertAction(
-                title: "OK",
-                style: .default,
-                handler: { action in
+    //@ IBAction func saveMemo(){
+        //saveData.set(titleTextField.text, forKey: "\(chiki ??  "")title")//savedataのtitletext
+        //saveData.set(contentTextView.text,forKey: "\(chiki ??  "")content")
+        //let alert: UIAlertController = UIAlertController(title: "保存", message: "本文を入れます", preferredStyle: .alert)
+        //alert.addAction(
+          //  UIAlertAction(
+          //      title: "OK",
+               // style: .default,
+               // handler: { action in
                     
-                    self.navigationController?.popViewController(animated: true)
-                    self.saveData.set(self.haikeiImageView.image!.pngData() as Data? , forKey: "\(self.chiki ?? "")saveImage")
+                    //self.navigationController?.popViewController(animated: true)
+                    //self.saveData.set(self.haikeiImageView.image!.pngData() as Data? , forKey: "\(self.chiki ?? "")saveImage")
                    
-            }
+            //}
                 
-            )
-        )//savedataのalart
-        present(alert, animated: true,completion: nil)// 画面遷移戻す
+            //)
+        //)//savedataのalart
+        //present(alert, animated: true,completion: nil)// 画面遷移戻す
         
-        func textFieldShouldReturn(_ textField: UITextField)-> Bool{
-            textField.resignFirstResponder()
-            return true
+        //func textFieldShouldReturn(_ textField: UITextField)-> Bool{
+            //textField.resignFirstResponder()
+            //return true
         //戻る
             
             
-        }
+        //}
         
-    }
-    
+
+}
   
     
     
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -7,21 +7,43 @@
 //
 
 import UIKit
-
+import RealmSwift
 class chiikiViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+    let realm = try! Realm()
+    var MemoArray: Results<Memo>!
     @IBOutlet var table: UITableView!
     
     var chiikiNameArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        MemoArray = realm.objects(Memo.self)
         
         table.dataSource = self
         table.delegate = self
         
         chiikiNameArray =
             ["アフリカ","ヨーロッパ","中東","アジア","オセアニア","北米","中南米"]//chiikinamearray の中身
+        if MemoArray.count == 0{
+            let memo = Memo()
+            
+            
+            try! realm.write{
+                realm.add(memo)
+            }
+        }
+        for i in 0...6{
+            if MemoArray.count == 0{
+                       let memo = Memo()
+                       
+                       
+                       try! realm.write{
+                           realm.add(memo)
+                       }
+                   }
+        }
+        
+        
         
     }
     // tableviewのcellの段数
@@ -54,7 +76,6 @@ class chiikiViewController: UIViewController, UITableViewDataSource, UITableView
     
     
 }
-
 
 
 
