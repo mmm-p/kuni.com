@@ -34,6 +34,17 @@ class detailViewController: UIViewController {
         print(chiki)
     let imagePickerController: UIImagePickerController = UIImagePickerController()
         MemoArray = realm.objects(Memo.self)
+//        print(MemoArray)
+//        print(MemoArray[0].title)
+        let memo2  = realm.objects(Memo.self).filter("name == 'アフリカ'")
+        print(memo2)
+//        _ = realm.objects(Memo.self).filter("content == 'ヨーロッパ'")
+//        _ = realm.objects(Memo.self).filter("content == '中東'")
+//        _ = realm.objects(Memo.self).filter("content == 'アジア'")
+//        _ = realm.objects(Memo.self).filter("content == 'オセアニア'")
+//        _ = realm.objects(Memo.self).filter("content == '北米'")
+//        _ = realm.objects(Memo.self).filter("content == '中南米'")
+
         //titleTextField.text = saveData.object(forKey: "\(chiki ??  "")title") as? String
        //contentTextView.text = saveData.object(forKey: "\(chiki ?? "")content") as? String
         //if saveData.object(forKey: "\(chiki ?? "")saveImage" ) != nil{
@@ -61,17 +72,18 @@ class detailViewController: UIViewController {
         
     //}
     
+    
 
 @IBAction func saveMemo(){
     let memo = Memo()
     memo.title = titleTextField.text!
     memo.content = contentTextView.text!
+    memo.name = contentTextView.text!
     
     try! realm.write{
         realm.add(memo)
     }
-    print(MemoArray)
-
+    
     let alert: UIAlertController = UIAlertController(title: "保存", message: "本文を入れます", preferredStyle: .alert)
      alert.addAction(
            UIAlertAction(

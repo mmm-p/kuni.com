@@ -19,6 +19,20 @@ class chiikiViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         MemoArray = realm.objects(Memo.self)
         
+        /* 初回実行の時 */
+        
+        for i in 0...6{
+             if MemoArray.count == 0{
+                       let memo = Memo()
+
+
+                       try! realm.write{
+                            realm.add(memo)
+                        }
+                   }
+        }
+        MemoArray = realm.objects(Memo.self)
+        
         table.dataSource = self
         table.delegate = self
         
@@ -32,18 +46,11 @@ class chiikiViewController: UIViewController, UITableViewDataSource, UITableView
                 realm.add(memo)
             }
         }
-        for i in 0...6{
-            if MemoArray.count == 0{
-                       let memo = Memo()
-                       
-                       
-                       try! realm.write{
-                           realm.add(memo)
-                       }
-                   }
-        }
         
-        
+
+        /* 2回目以降実行の時 */
+//         var content =
+//         var title = chiikiNameArray[0]
         
     }
     // tableviewのcellの段数
